@@ -1,0 +1,52 @@
+﻿<Page
+    x:Class="discovery.KIT.Frames.CreateOrUpdateConnection"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:discovery.KIT.Frames"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:discovery.KIT.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer Grid.ColumnSpan="2" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Horizontal" Spacing="25" >
+                  <StackPanel Spacing="5" Width="750" >
+                    <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Identification du serveur"></TextBlock>
+                        <TextBox FontSize="32"  Text="{x:Bind Alias, Mode=TwoWay}" PlaceholderText="Alias du serveur"></TextBox>
+                        <TextBox FontSize="32"  Text="{x:Bind Server, Mode=TwoWay}" PlaceholderText="Nom / Adresse du serveur de base"></TextBox>
+                        <TextBox FontSize="32"  Text="{x:Bind Port, Mode=TwoWay}" PlaceholderText="Port"></TextBox>
+                    </StackPanel>
+
+                <StackPanel Spacing="5" Width="750" >
+                    <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Connexions"></TextBlock>
+                    <TextBox FontSize="32"  PlaceholderText="Utilisateur" Text="{x:Bind User, Mode=TwoWay}" ></TextBox>
+                    <PasswordBox FontSize="32"  PlaceholderText="Mot de passe" x:Name="UserPasswordBox"></PasswordBox>
+                </StackPanel>
+                 
+                <StackPanel Spacing="5" Width="750" >
+                    <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Spécifités ORACLE"></TextBlock>
+                    <TextBox FontSize="32"  PlaceholderText="SID de la base de données" Text="{x:Bind SID, Mode=TwoWay}" ></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+       
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+        </Grid>
+            <Button x:Name="ValidateBtn" Grid.Row="2" Grid.Column="1"  Width="150" HorizontalAlignment="Right" Background="{x:Null}" Click="ValidateBtn_Click">
+            <Image  Source="/Assets/Content/validate_icon.svg"></Image>
+        </Button>
+        <controls:BackButtonCompact   VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="150" Grid.Row="2"></controls:BackButtonCompact>
+    </Grid>
+</Page>

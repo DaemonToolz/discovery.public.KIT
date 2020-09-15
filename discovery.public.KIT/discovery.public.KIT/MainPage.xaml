@@ -1,0 +1,45 @@
+﻿<Page
+    x:Class="discovery.KIT.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:discovery.KIT"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:frames="using:discovery.KIT.Frames"
+    mc:Ignorable="d" RequestedTheme="Light"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Spacing="5" Orientation="Horizontal">
+            <Button Width="150" Background="{x:Null}">
+                <Image MaxWidth="150"  Source="/Assets/Content/settings_icon.svg"></Image>
+            </Button>
+            <Button Width="150" Background="{x:Null}">
+                <Image MaxWidth="150"  Source="/Assets/Content/help_icon.svg"></Image>
+            </Button>
+        </StackPanel>
+
+        <Image Grid.Column="1" MaxWidth="100" Source="/Assets/Content/home_logo.svg"></Image>
+
+        <StackPanel Grid.Column="2"  Spacing="5" Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Button x:Name="AppDisconnectBtn" Width="150" Background="{x:Null}">
+                <Image MaxWidth="150"  Source="/Assets/Content/quit_icon.svg"></Image>
+            </Button>
+        </StackPanel>
+
+        <Frame x:Name="MainFrame" Grid.Row="1" Grid.ColumnSpan="3" SourcePageType="frames:WelcomePage">
+            
+        </Frame>
+    </Grid>
+</Page>

@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="discovery.KIT.Frames.DataSourceSummary"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:discovery.KIT.Frames"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:discovery.KIT.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Spacing="5">
+            <TextBlock FontSize="48" FontWeight="Bold" Text="{x:Bind Alias}" ></TextBlock>
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <TextBlock FontSize="32" Text="Serveur"  ></TextBlock>
+                <TextBlock FontSize="32" Text="{x:Bind Server}" ></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <TextBlock FontSize="32" Text="Port" ></TextBlock>
+                <TextBlock FontSize="32" Text="{x:Bind Port}" ></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <TextBlock FontSize="32" Text="SID" ></TextBlock>
+                <TextBlock FontSize="32" Text="{x:Bind SID}" ></TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Spacing="5">
+            <StackPanel Orientation="Horizontal" Spacing="20">
+                <TextBlock FontSize="32" Text="Utilisateur" ></TextBlock>
+                <TextBlock FontSize="32" Text="{x:Bind User}" ></TextBlock>
+            </StackPanel>
+  
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Spacing="50" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <controls:BackButtonCompact   VerticalAlignment="Stretch" Width="150" ></controls:BackButtonCompact>
+            <Button x:Name="BookmarkMeBtn" Width="150"  Background="{x:Null}" Click="BookmarkMeBtn_Click" >
+                <Image  Source="/Assets/Content/booking_icon.svg"></Image>
+            </Button>
+            <Button x:Name="ConnectBtn" Width="150"  Background="{x:Null}" Click="ConnectBtn_Click" >
+                <Image  Source="/Assets/Content/access_icon.svg"></Image>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>
