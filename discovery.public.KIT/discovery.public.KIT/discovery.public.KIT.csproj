@@ -133,9 +133,16 @@
     <Compile Include="Frames\DataSourceSummary.xaml.cs">
       <DependentUpon>DataSourceSummary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Frames\FilterPage.xaml.cs">
+      <DependentUpon>FilterPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Frames\ImportExport.xaml.cs">
+      <DependentUpon>ImportExport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Frames\WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Internal\ActiveConnectionHandler.cs" />
     <Compile Include="Internal\SecuritySettings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -156,9 +163,13 @@
     <Content Include="Assets\Content\booking_icon.svg" />
     <Content Include="Assets\Content\cancel_icon.svg" />
     <Content Include="Assets\Content\create_new_icon.svg" />
+    <Content Include="Assets\Content\database_config_icon.svg" />
     <Content Include="Assets\Content\delete_me_icon.svg" />
+    <Content Include="Assets\Content\filter_icon.svg" />
     <Content Include="Assets\Content\help_icon.svg" />
     <Content Include="Assets\Content\home_logo.svg" />
+    <Content Include="Assets\Content\import_export_icon.svg" />
+    <Content Include="Assets\Content\lookup_icon.svg" />
     <Content Include="Assets\Content\offline_icon.svg" />
     <Content Include="Assets\Content\quit_icon.svg" />
     <Content Include="Assets\Content\settings_icon.svg" />
@@ -193,6 +204,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Frames\FilterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Frames\ImportExport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Frames\WelcomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -222,7 +241,12 @@
       <Version>6.1.1</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\discovery.public.KIT.Security\discovery.public.KIT.Security.csproj">
+      <Project>{23626672-1d91-46e7-bf5d-733a84bd3f38}</Project>
+      <Name>discovery.public.KIT.Security</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

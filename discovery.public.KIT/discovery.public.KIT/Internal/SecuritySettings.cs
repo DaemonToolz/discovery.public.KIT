@@ -10,10 +10,11 @@ using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.DataProtection;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using discovery.KIT.Security;
 
 namespace discovery.KIT.Internal
 {
-    public static class SettingsSecurity
+    public static partial class SettingsSecurity
     {
         /// <summary>
         /// 
@@ -116,7 +117,7 @@ namespace discovery.KIT.Internal
         {
             var vault = new PasswordVault();
             await DeleteCredentials(guid);
-            vault.Add(new PasswordCredential(guid, username, SecureStringToString(password)));
+            vault.Add(new PasswordCredential(guid, username, SecuritySettings.SecureStringToString(password)));
         }
 
         /// <summary>
@@ -134,7 +135,7 @@ namespace discovery.KIT.Internal
                 {
                     if (vault.FindAllByResource(guid).Any())
                     {
-                        vault.Remove(new PasswordCredential(guid, username, SecureStringToString(password)));
+                        vault.Remove(new PasswordCredential(guid, username, SecuritySettings.SecureStringToString(password)));
                     }
                 }
                 catch
@@ -273,20 +274,8 @@ namespace discovery.KIT.Internal
         {
             ApplicationData.Current.LocalSettings.DeleteContainer(alias);
         }
-
-        public static string SecureStringToString(SecureString value)
-        {
-            IntPtr valuePtr = IntPtr.Zero;
-            try
-            {
-                valuePtr = Marshal.SecureStringToGlobalAllocUnicode(value);
-                return Marshal.PtrToStringUni(valuePtr);
-            }
-            finally
-            {
-                Marshal.ZeroFreeGlobalAllocUnicode(valuePtr);
-            }
-        }
+        
+    
 
         /// <summary>
         /// 

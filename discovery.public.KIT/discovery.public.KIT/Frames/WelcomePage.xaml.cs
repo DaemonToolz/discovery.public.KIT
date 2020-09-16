@@ -171,5 +171,16 @@ namespace discovery.KIT.Frames
 
             }
         }
+
+        private void OfflineBtn_Click(object sender, RoutedEventArgs e)
+        {
+            _eventManager.OnNavigationEvent(new NavigationEventArgs<object>()
+            {
+                NavigationEvent = NavigationEvent.LogIn,
+                Data = new DataSourceConnection() {
+                    OfflineMode = true
+                },
+            });
+        }
     }
 }

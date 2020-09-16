@@ -6,17 +6,7 @@ namespace discovery.KIT.Models
     public class NavigationEventArgs<T> : EventArgs 
     {
         public T Data;
-        public object AdditionalPayload;
         public NavigationEvent NavigationEvent;
-
-    }
-
- 
-    public enum DataSourceEventType
-    {
-        Insert,
-        Update,
-        Delete
     }
 
     public enum NavigationEvent
@@ -24,9 +14,7 @@ namespace discovery.KIT.Models
         CreateOrUpdate,
         Summary,
         Welcome,
-        Delete,
         LogIn,
-        Disconnect,
         Back
     }
 

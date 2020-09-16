@@ -50,6 +50,9 @@ namespace discovery.KIT
                 case NavigationEvent.Summary:
                     MainFrame.Navigate(typeof(DataSourceSummary), args.Data);
                     break;
+                case NavigationEvent.LogIn:
+                    MainFrame.Navigate(typeof(DataPage), args.Data);
+                    break;
                 case NavigationEvent.Welcome:
                     MainFrame.Navigate(typeof(WelcomePage));
                     MainFrame.ForwardStack.Clear();

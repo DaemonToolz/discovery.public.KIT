@@ -57,5 +57,6 @@ namespace discovery.KIT.Models.DataSources
         public DataSourceType Type;
 
         public OracleData OracleContent;
+        public bool OfflineMode = false;
     }
 }

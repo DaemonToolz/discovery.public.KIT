@@ -6,8 +6,24 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:discovery.KIT.Controls"
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <Style x:Key="TextBoxRegexStyle"
+               TargetType="TextBox">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+        <DataTemplate x:Key="HeaderTemplate">
+            <StackPanel>
+                <TextBlock Text="{Binding}"
+                           TextWrapping="WrapWholeWords" />
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
 
     <Grid>
         <Grid.RowDefinitions>
@@ -24,20 +40,20 @@
             <StackPanel Orientation="Horizontal" Spacing="25" >
                   <StackPanel Spacing="5" Width="750" >
                     <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Identification du serveur"></TextBlock>
-                        <TextBox FontSize="32"  Text="{x:Bind Alias, Mode=TwoWay}" PlaceholderText="Alias du serveur"></TextBox>
-                        <TextBox FontSize="32"  Text="{x:Bind Server, Mode=TwoWay}" PlaceholderText="Nom / Adresse du serveur de base"></TextBox>
-                        <TextBox FontSize="32"  Text="{x:Bind Port, Mode=TwoWay}" PlaceholderText="Port"></TextBox>
+                    <TextBox FontSize="32"  Text="{x:Bind Alias, Mode=TwoWay}" PlaceholderText="Alias du serveur"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
+                    <TextBox FontSize="32"  Text="{x:Bind Server, Mode=TwoWay}" PlaceholderText="Nom / Adresse du serveur de base" extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
+                    <TextBox FontSize="32"  Text="{x:Bind Port, Mode=TwoWay}" PlaceholderText="Port" extensions:TextBoxRegex.Regex="[0-9]+"></TextBox>
                     </StackPanel>
 
                 <StackPanel Spacing="5" Width="750" >
                     <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Connexions"></TextBlock>
-                    <TextBox FontSize="32"  PlaceholderText="Utilisateur" Text="{x:Bind User, Mode=TwoWay}" ></TextBox>
-                    <PasswordBox FontSize="32"  PlaceholderText="Mot de passe" x:Name="UserPasswordBox"></PasswordBox>
+                    <TextBox FontSize="32"  PlaceholderText="Utilisateur" Text="{x:Bind User, Mode=TwoWay}"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$" ></TextBox>
+                    <PasswordBox FontSize="32"  PlaceholderText="Mot de passe" x:Name="UserPasswordBox" ></PasswordBox>
                 </StackPanel>
                  
                 <StackPanel Spacing="5" Width="750" >
                     <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Spécifités ORACLE"></TextBlock>
-                    <TextBox FontSize="32"  PlaceholderText="SID de la base de données" Text="{x:Bind SID, Mode=TwoWay}" ></TextBox>
+                    <TextBox FontSize="32"  PlaceholderText="SID de la base de données" Text="{x:Bind SID, Mode=TwoWay}"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
