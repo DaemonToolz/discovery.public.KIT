@@ -5,8 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -15,6 +17,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using discovery.KIT.Events;
+using discovery.KIT.Internal;
 using discovery.KIT.Models;
 using discovery.KIT.Models.DataSources;
 
@@ -30,15 +33,19 @@ namespace discovery.KIT.Frames
 
         private EventManager _eventManager = new EventManager();
 
-        private bool _offlineMode;
+        private bool _offlineMode = true;
         public bool OfflineMode
         {
             get => _offlineMode;
             set => SetField(ref _offlineMode, value);
         }
+
+        private DataSourceConnection _cached;
+
         public DataPage()
         {
             this.InitializeComponent();
+            NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -46,15 +53,30 @@ namespace discovery.KIT.Frames
             base.OnNavigatedTo(e);
             if (!(e.Parameter is DataSourceConnection data))
             {
-                _eventManager.OnNavigationEvent(new NavigationEventArgs<object>()
-                {
-                    NavigationEvent = NavigationEvent.Welcome,
-                });
                 return;
             }
 
-            OfflineMode = data.OfflineMode;
+            _cached = data;
+            OfflineMode = _cached.OfflineMode;
 
+            if (!OfflineMode)
+            {
+                OfflineMode = false;
+                /*
+               _ = ActiveConnectionHandler.ConnectAsync(_cached).ContinueWith(task =>
+               {
+                   var ok = false;
+                   try  {
+                       ok = task.Result;
+                   } catch
+                   {
+                       ok = false;
+                   }
+
+                   _ = Dispatcher.RunAsync(CoreDispatcherPriority.High, () => { OfflineMode = ok; });
+               });
+                */
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

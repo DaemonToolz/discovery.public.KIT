@@ -13,9 +13,14 @@ namespace discovery.KIT.Internal
     {
         private static OracleConnector OC;
 
-        public static void Connect(ref DataSourceConnection dsc)
+        public static bool Connect(ref DataSourceConnection dsc)
         {
             OC?.Disconnect();
+            if (dsc.ID == default || string.IsNullOrEmpty(dsc.Alias) || string.IsNullOrEmpty(dsc.Server) || dsc.Port <= 0 || dsc.AuthenticationData?.Password == null || string.IsNullOrEmpty(dsc.AuthenticationData?.Username) )
+            {
+                return false;
+            }
+
             OC = new OracleConnector(new OracleAuthData()
             {
                 Host = dsc.Server,
@@ -24,7 +29,12 @@ namespace discovery.KIT.Internal
                 Username = dsc.AuthenticationData.Username,
                 SID = dsc.OracleContent.SID
             });
-            OC.ConnectoToUri();
+            return OC.ConnectoToUri();
+        }
+
+        public static Task<bool> ConnectAsync(DataSourceConnection dsc)
+        {
+            return Task.Run(() => Connect(ref dsc));
         }
 
         public static void Disconnect()

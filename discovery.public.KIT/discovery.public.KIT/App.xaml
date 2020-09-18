@@ -2,6 +2,13 @@
     x:Class="discovery.KIT.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:discovery.KIT" RequestedTheme="Light">
+    xmlns:local="using:discovery.KIT"
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
+    xmlns:converters1="using:discovery.KIT.Converters"
+    RequestedTheme="Light">
 
+    <Application.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisiblityConverter" />
+        <converters1:InvertedBoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" />
+    </Application.Resources>
 </Application>

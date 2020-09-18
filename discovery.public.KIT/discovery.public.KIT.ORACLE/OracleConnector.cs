@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Dynamic;
+using Windows.ApplicationModel.Chat;
 using discovery.KIT.ORACLE.Generics;
 using discovery.KIT.ORACLE.Internal;
 using discovery.KIT.Security;
@@ -91,7 +92,7 @@ namespace discovery.KIT.ORACLE
         /// <summary>
         /// 
         /// </summary>
-        public void ConnectoToUri()
+        public bool ConnectoToUri()
         {
             if (OracleConnection != null) Disconnect();
 
@@ -100,11 +101,12 @@ namespace discovery.KIT.ORACLE
             {
                 OracleConnection = new OracleConnection(ConnectionString);
                 OracleConnection.Open();
+                return true;
             }
             catch (Exception e)
             {
                 OracleConnection = null;
-                throw e;
+                return false;
             }
         }
 
@@ -141,7 +143,7 @@ namespace discovery.KIT.ORACLE
 
             if (string.IsNullOrEmpty(Table) || null == OracleConnection)
             {
-                return default;
+                return DataSource = default;
             }
 
             try
@@ -161,10 +163,10 @@ namespace discovery.KIT.ORACLE
                     condition += $" ORDER BY {orderBy}";
                 }
 
-                var command = new OracleCommand($"SELECT * FROM {Table} {condition}", OracleConnection);
-                var adapter = new OracleDataAdapter(command);
-                var builder = new OracleCommandBuilder(adapter);
-                var dataSet = new DataSet();
+                using var command = new OracleCommand($"SELECT * FROM {Table} {condition}", OracleConnection);
+                using var adapter = new OracleDataAdapter(command);
+                using var builder = new OracleCommandBuilder(adapter);
+                using var dataSet = new DataSet();
 
 
                 adapter.Fill(dataSet);
@@ -214,13 +216,23 @@ namespace discovery.KIT.ORACLE
                 return;
             }
 
-            var command = new OracleCommand($"SELECT column_name FROM sys.all_tab_columns WHERE TABLE_NAME='{Table}'",  OracleConnection);
-            var adapter = new OracleDataAdapter(command);
-            var builder = new OracleCommandBuilder(adapter);
-            var dataSet = new DataSet();
+            try
+            {
+                using var command = OracleConnection?.CreateCommand();
+                command.BindByName = true;
+                command.CommandText = "SELECT column_name FROM sys.all_tab_columns WHERE TABLE_NAME= :table";
+                command.Parameters.Add(new OracleParameter("table", Table));
+                using var reader = command.ExecuteReader();
+                Headers.Clear();
 
-            adapter.Fill(dataSet);
-            Headers.Clear();
+                while (reader.Read())
+                {
+                    Headers.Add(reader.GetString(0));
+                }
+            } catch
+            {
+                Headers.Clear();
+            }
         }
 
         /// <summary>
@@ -233,26 +245,20 @@ namespace discovery.KIT.ORACLE
                 return default;
             }
 
-            var command = new OracleCommand("SELECT table_name FROM all_tables ORDER BY table_name DESC", OracleConnection);
-            var adapter = new OracleDataAdapter(command);
-            var builder = new OracleCommandBuilder(adapter);
-            var dataSet = new DataSet();
-
-            adapter.Fill(dataSet);
-            Tables.Clear();
             try
             {
-                foreach (DataRow data in dataSet.Tables[0].Rows)
+                using var command = OracleConnection?.CreateCommand();
+                command.BindByName = true;
+                command.CommandText = "SELECT table_name FROM all_tables ORDER BY table_name DESC";
+                using var reader = command.ExecuteReader();
+                Tables.Clear();
+
+                while (reader.Read())
                 {
-                    foreach (var table in data.ItemArray)
-                    {
-                        Tables.Add(table.ToString());
-                    }
+                    Tables.Add(reader.GetString(0));
                 }
-            }
-            catch
+            } catch
             {
-                // Exception => Clear
                 Tables.Clear();
             }
 

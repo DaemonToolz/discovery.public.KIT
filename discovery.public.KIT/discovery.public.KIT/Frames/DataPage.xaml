@@ -22,18 +22,22 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.ColumnSpan="2" FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Alias" ></TextBlock>
-        
-        <AutoSuggestBox Margin="10" Grid.Row="1"  PlaceholderText="Table name"></AutoSuggestBox>
-        <Grid Padding="10" Height="25" Grid.Row="1"></Grid>
-        <controls1:DataGrid Margin="10" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TextBlock Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}" FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Alias" ></TextBlock>
+
+        <AutoSuggestBox Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}" Margin="10" Grid.Row="1"  PlaceholderText="Table name"></AutoSuggestBox>
+        <Grid Visibility="{x:Bind OfflineMode, Converter={StaticResource BoolToVisiblityConverter}, Mode=OneWay}" Background="DarkRed"  Padding="10" Height="90" Grid.RowSpan="2">
+            <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Offline" Foreground="White" ></TextBlock>
+
+        </Grid>
+
+        <controls1:DataGrid Margin="10" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
         </controls1:DataGrid>
         <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
-            <Button Width="150" Background="{x:Null}" >
+            <Button  Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}"  Width="150" Background="{x:Null}" >
                 <Image  Source="/Assets/Content/lookup_icon.svg"></Image>
             </Button>
-            <Button Width="150"  Background="{x:Null}" >
+            <Button Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}"  Width="150"  Background="{x:Null}" >
                 <Image  Source="/Assets/Content/filter_icon.svg"></Image>
             </Button>
             <Button Width="150" Background="{x:Null}" >
@@ -42,7 +46,7 @@
          
         </StackPanel>
 
-        <Button Width="150" Grid.Column="1"  Grid.Row="3" HorizontalAlignment="Right" Background="{x:Null}" >
+        <Button Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}" Width="150" Grid.Column="1"  Grid.Row="3" HorizontalAlignment="Right" Background="{x:Null}" >
             <Image  Source="/Assets/Content/database_config_icon.svg"></Image>
         </Button>
         <controls:BackButtonCompact   VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="150" Grid.Row="3"></controls:BackButtonCompact>

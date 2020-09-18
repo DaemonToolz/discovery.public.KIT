@@ -44,7 +44,7 @@
                         <Button Tag="{x:Bind ID}" Grid.Row="4"  x:Name="EditSettingsBtn" Background="{x:Null}" Click="EditSettingsBtn_Click">
                             <Image Source="/Assets/Content/database_config_icon.svg"></Image>
                         </Button>
-                        <Button Tag="{x:Bind ID}" Grid.Row="4"  Grid.Column="1" x:Name="AccessDataBtn"  Background="{x:Null}">
+                        <Button Tag="{x:Bind ID}" Grid.Row="4"  Grid.Column="1" x:Name="AccessDataBtn"  Background="{x:Null}" Click="AccessDataBtn_Click">
                             <Image Source="/Assets/Content/access_icon.svg"></Image>
                         </Button>
 

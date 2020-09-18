@@ -182,5 +182,21 @@ namespace discovery.KIT.Frames
                 },
             });
         }
+
+        private void AccessDataBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is Button accessBtn))
+            {
+                return;
+            }
+
+            var data = Data.First(summary => summary.ID.ToString() == accessBtn.Tag.ToString());
+            data.OfflineMode = false;
+            _eventManager.OnNavigationEvent(new NavigationEventArgs<object>()
+            {
+                NavigationEvent = NavigationEvent.LogIn,
+                Data = data
+            });
+        }
     }
 }
