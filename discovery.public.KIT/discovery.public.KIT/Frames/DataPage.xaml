@@ -13,6 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
@@ -22,10 +23,13 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.ColumnSpan="2" FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Alias" ></TextBlock>
-        <controls1:DataGrid Margin="10" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        
+        <AutoSuggestBox Margin="10" Grid.Row="1"  PlaceholderText="Table name"></AutoSuggestBox>
+        <Grid Padding="10" Height="25" Grid.Row="1"></Grid>
+        <controls1:DataGrid Margin="10" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
         </controls1:DataGrid>
-        <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.RowSpan="1">
+        <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
             <Button Width="150" Background="{x:Null}" >
                 <Image  Source="/Assets/Content/lookup_icon.svg"></Image>
             </Button>
@@ -38,10 +42,10 @@
          
         </StackPanel>
 
-        <Button Width="150" Grid.Column="1"  Grid.Row="2" HorizontalAlignment="Right" Background="{x:Null}" >
+        <Button Width="150" Grid.Column="1"  Grid.Row="3" HorizontalAlignment="Right" Background="{x:Null}" >
             <Image  Source="/Assets/Content/database_config_icon.svg"></Image>
         </Button>
-        <controls:BackButtonCompact   VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="150" Grid.Row="2"></controls:BackButtonCompact>
+        <controls:BackButtonCompact   VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="150" Grid.Row="3"></controls:BackButtonCompact>
 
     </Grid>
 </Page>

@@ -242,6 +242,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\discovery.public.KIT.ORACLE\discovery.public.KIT.ORACLE.csproj">
+      <Project>{B7AC55E1-899A-4D74-BB6B-AF6A67584DF4}</Project>
+      <Name>discovery.public.KIT.ORACLE</Name>
+    </ProjectReference>
     <ProjectReference Include="..\discovery.public.KIT.Security\discovery.public.KIT.Security.csproj">
       <Project>{23626672-1d91-46e7-bf5d-733a84bd3f38}</Project>
       <Name>discovery.public.KIT.Security</Name>
