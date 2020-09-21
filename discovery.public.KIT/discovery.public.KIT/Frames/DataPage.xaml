@@ -24,7 +24,7 @@
 
         <TextBlock Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}" FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Alias" ></TextBlock>
 
-        <AutoSuggestBox Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}" Margin="10" Grid.Row="1"  PlaceholderText="Table name"></AutoSuggestBox>
+        <AutoSuggestBox x:Name="SelectedTableBox" Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}" Margin="10" Grid.Row="1"  PlaceholderText="Table name" TextChanged="SelectedTableBox_TextChanged"></AutoSuggestBox>
         <Grid Visibility="{x:Bind OfflineMode, Converter={StaticResource BoolToVisiblityConverter}, Mode=OneWay}" Background="DarkRed"  Padding="10" Height="90" Grid.RowSpan="2">
             <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Offline" Foreground="White" ></TextBlock>
 
@@ -37,7 +37,9 @@
             <Button  Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}"  Width="150" Background="{x:Null}" >
                 <Image  Source="/Assets/Content/lookup_icon.svg"></Image>
             </Button>
-            <Button Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}"  Width="150"  Background="{x:Null}" >
+
+            <!-- Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}"  -->
+            <Button x:Name="QueryFilterBtn"  Width="150"  Background="{x:Null}" Click="QueryFilterBtn_Click" >
                 <Image  Source="/Assets/Content/filter_icon.svg"></Image>
             </Button>
             <Button Width="150" Background="{x:Null}" >

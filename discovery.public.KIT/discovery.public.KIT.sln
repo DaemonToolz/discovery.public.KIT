@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "discovery.public.KIT.ORACLE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "discovery.public.KIT.Security", "discovery.public.KIT.Security\discovery.public.KIT.Security.csproj", "{23626672-1D91-46E7-BF5D-733A84BD3F38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "discovery.public.KIT.p2p", "discovery.public.KIT.p2p\discovery.public.KIT.p2p.csproj", "{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -89,6 +91,26 @@ Global
 		{23626672-1D91-46E7-BF5D-733A84BD3F38}.Release|x64.Build.0 = Release|x64
 		{23626672-1D91-46E7-BF5D-733A84BD3F38}.Release|x86.ActiveCfg = Release|x86
 		{23626672-1D91-46E7-BF5D-733A84BD3F38}.Release|x86.Build.0 = Release|x86
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Debug|ARM.ActiveCfg = Debug|ARM
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Debug|ARM.Build.0 = Debug|ARM
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Debug|ARM64.ActiveCfg = Debug|ARM64
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Debug|ARM64.Build.0 = Debug|ARM64
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Debug|x64.ActiveCfg = Debug|x64
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Debug|x64.Build.0 = Debug|x64
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Debug|x86.ActiveCfg = Debug|x86
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Debug|x86.Build.0 = Debug|x86
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Release|ARM.ActiveCfg = Release|ARM
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Release|ARM.Build.0 = Release|ARM
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Release|ARM64.ActiveCfg = Release|ARM64
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Release|ARM64.Build.0 = Release|ARM64
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Release|x64.ActiveCfg = Release|x64
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Release|x64.Build.0 = Release|x64
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Release|x86.ActiveCfg = Release|x86
+		{4E1ED2B1-EAAC-49E8-A4A4-93DDD58D0402}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

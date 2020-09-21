@@ -53,6 +53,10 @@ namespace discovery.KIT
                 case NavigationEvent.LogIn:
                     MainFrame.Navigate(typeof(DataPage), args.Data);
                     break;
+
+                case NavigationEvent.QueryFilters:
+                    MainFrame.Navigate(typeof(FilterPage), args.Data);
+                    break;
                 case NavigationEvent.Welcome:
                     MainFrame.Navigate(typeof(WelcomePage));
                     MainFrame.ForwardStack.Clear();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -40,6 +41,14 @@ namespace discovery.KIT.Frames
             set => SetField(ref _offlineMode, value);
         }
 
+
+        private ObservableCollection<string> _tables = new ObservableCollection<string>();
+        public ObservableCollection<string> Tables
+        {
+            get => _tables;
+            set => SetField(ref _tables, value);
+        }
+
         private DataSourceConnection _cached;
 
         public DataPage()
@@ -60,10 +69,9 @@ namespace discovery.KIT.Frames
             OfflineMode = _cached.OfflineMode;
 
             if (!OfflineMode)
-            {
-                OfflineMode = false;
-                /*
-               _ = ActiveConnectionHandler.ConnectAsync(_cached).ContinueWith(task =>
+            { 
+                
+               _ = ActiveConnectionHandler.ConnectAsync(_cached).ContinueWith(async task =>
                {
                    var ok = false;
                    try  {
@@ -74,8 +82,14 @@ namespace discovery.KIT.Frames
                    }
 
                    _ = Dispatcher.RunAsync(CoreDispatcherPriority.High, () => { OfflineMode = ok; });
+
+                   if (ok)
+                   {
+                       var tables = await ActiveConnectionHandler.DiscoverServer();
+                       _ = Dispatcher.RunAsync(CoreDispatcherPriority.High, () => { Tables = new ObservableCollection<string>(tables); });
+                   }
                });
-                */
+                
             }
         }
 
@@ -93,5 +107,18 @@ namespace discovery.KIT.Frames
             return true;
         }
 
+        private void SelectedTableBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+
+        }
+
+        private void QueryFilterBtn_Click(object sender, RoutedEventArgs e)
+        {
+           
+            _eventManager.OnNavigationEvent(new NavigationEventArgs<object>()
+            {
+                NavigationEvent = NavigationEvent.QueryFilters
+            });
+        }
     }
 }

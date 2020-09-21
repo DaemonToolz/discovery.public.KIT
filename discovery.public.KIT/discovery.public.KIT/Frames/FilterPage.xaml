@@ -5,10 +5,43 @@
     xmlns:local="using:discovery.KIT.Frames"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:discovery.KIT.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
 
+        <TextBlock Grid.ColumnSpan="3" FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Query filters" ></TextBlock>
+
+        <controls:BackButtonCompact  Grid.Row="3"  VerticalAlignment="Stretch" Width="150" ></controls:BackButtonCompact>
+
+        <!-- WHERE Conditions -->
+        <Button Grid.Row="1" x:Name="AddSearchClauseBtn" Width="250"  Background="{x:Null}">
+            <Image MaxWidth="150"  Source="/Assets/Content/create_new_icon.svg"></Image>
+        </Button>
+        <ListView Grid.Row="1" Grid.Column="1"></ListView>
+        <Button Grid.Row="1" Grid.Column="2" x:Name="RemSearchClauseBtn" Width="250"  Background="{x:Null}">
+            <Image MaxWidth="150"  Source="/Assets/Content/delete_me_icon.svg"></Image>
+        </Button>
+
+        <!-- OrderBy Conditions -->
+        <Button Grid.Row="2" x:Name="AddOrderClauseBtn" Width="250"  Background="{x:Null}">
+            <Image MaxWidth="150"  Source="/Assets/Content/create_new_icon.svg"></Image>
+        </Button>
+        <ListView Grid.Row="2" Grid.Column="1"></ListView>
+        <Button Grid.Row="2" Grid.Column="2" x:Name="RemOrderClauseBtn" Width="250"  Background="{x:Null}">
+            <Image MaxWidth="150"  Source="/Assets/Content/delete_me_icon.svg"></Image>
+        </Button>
     </Grid>
 </Page>

@@ -57,5 +57,8 @@ namespace discovery.KIT.Internal
         public static List<string> Tables  => OC?.Tables;
         public static List<dynamic> ExistingData => OC?.DataSource;
 
+        public static List<string> Filters;
+        public static List<string> OrderBy;
+
     }
 }

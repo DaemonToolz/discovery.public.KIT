@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Pour modifier les informations
 // associées à un assembly, changez les valeurs de ces attributs.
-[assembly: AssemblyTitle("discovery.public.KIT.Security")]
+[assembly: AssemblyTitle("discovery.public.KIT.p2p")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("discovery.public.KIT.Security")]
-[assembly: AssemblyCopyright("Copyright © Axel MACIEJEWSKI. 2020")]
+[assembly: AssemblyProduct("discovery.public.KIT.p2p")]
+[assembly: AssemblyCopyright("Copyright © Axel MACIEJEWSKI 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

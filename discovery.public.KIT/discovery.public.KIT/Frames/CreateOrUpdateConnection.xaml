@@ -39,21 +39,22 @@
         <ScrollViewer Grid.ColumnSpan="2" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Auto">
             <StackPanel Orientation="Horizontal" Spacing="25" >
                   <StackPanel Spacing="5" Width="750" >
-                    <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Identification du serveur"></TextBlock>
-                    <TextBox FontSize="32"  Text="{x:Bind Alias, Mode=TwoWay}" PlaceholderText="Alias du serveur"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
-                    <TextBox FontSize="32"  Text="{x:Bind Server, Mode=TwoWay}" PlaceholderText="Nom / Adresse du serveur de base" extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
+                      <!-- Localization regarding user language TBD-->
+                      <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Server identification"></TextBlock>
+                    <TextBox FontSize="32"  Text="{x:Bind Alias, Mode=TwoWay}" PlaceholderText="Alias / Registration name"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
+                    <TextBox FontSize="32"  Text="{x:Bind Server, Mode=TwoWay}" PlaceholderText="Database server" extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
                     <TextBox FontSize="32"  Text="{x:Bind Port, Mode=TwoWay}" PlaceholderText="Port" extensions:TextBoxRegex.Regex="[0-9]+"></TextBox>
                     </StackPanel>
 
                 <StackPanel Spacing="5" Width="750" >
-                    <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Connexions"></TextBlock>
-                    <TextBox FontSize="32"  PlaceholderText="Utilisateur" Text="{x:Bind User, Mode=TwoWay}"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$" ></TextBox>
-                    <PasswordBox FontSize="32"  PlaceholderText="Mot de passe" x:Name="UserPasswordBox" ></PasswordBox>
+                    <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Connection and Credentials"></TextBlock>
+                    <TextBox FontSize="32"  PlaceholderText="Username" Text="{x:Bind User, Mode=TwoWay}"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$" ></TextBox>
+                    <PasswordBox FontSize="32"  PlaceholderText="Password" x:Name="UserPasswordBox" ></PasswordBox>
                 </StackPanel>
                  
                 <StackPanel Spacing="5" Width="750" >
                     <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Spécifités ORACLE"></TextBlock>
-                    <TextBox FontSize="32"  PlaceholderText="SID de la base de données" Text="{x:Bind SID, Mode=TwoWay}"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
+                    <TextBox FontSize="32"  PlaceholderText="Oracle Database SID" Text="{x:Bind SID, Mode=TwoWay}"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
