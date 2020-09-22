@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -33,12 +34,12 @@
         <controls1:DataGrid Margin="10" Grid.Row="2"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
         </controls1:DataGrid>
-        <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2">
+        <StackPanel VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.RowSpan="3">
             <Button  Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}"  Width="150" Background="{x:Null}" >
                 <Image  Source="/Assets/Content/lookup_icon.svg"></Image>
             </Button>
 
-            <!-- Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}"  -->
+            <!-- Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}"   -->
             <Button x:Name="QueryFilterBtn"  Width="150"  Background="{x:Null}" Click="QueryFilterBtn_Click" >
                 <Image  Source="/Assets/Content/filter_icon.svg"></Image>
             </Button>
@@ -48,10 +49,31 @@
          
         </StackPanel>
 
-        <Button Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}" Width="150" Grid.Column="1"  Grid.Row="3" HorizontalAlignment="Right" Background="{x:Null}" >
+        <StackPanel Margin="10" Grid.Row="3" Orientation="Horizontal" Spacing="20">
+
+            <StackPanel>
+                <TextBlock FontWeight="Bold" Text="Filters" ></TextBlock>
+                <TextBlock Text="{x:Bind FilterCount}" ></TextBlock>
+            </StackPanel>
+
+            <StackPanel>
+                <TextBlock FontWeight="Bold" Text="Orders" ></TextBlock>
+                <TextBlock Text="{x:Bind OrderCount}" ></TextBlock>
+            </StackPanel>
+
+
+        </StackPanel>
+
+
+        <Button Visibility="{x:Bind OfflineMode, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}" Width="150" Grid.Column="1"  Grid.Row="4" HorizontalAlignment="Right" Background="{x:Null}" >
             <Image  Source="/Assets/Content/database_config_icon.svg"></Image>
         </Button>
-        <controls:BackButtonCompact   VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="150" Grid.Row="3"></controls:BackButtonCompact>
+
+        <Button  Width="150"  Grid.Row="4" HorizontalAlignment="Right" Background="{x:Null}" >
+            <Image  Source="/Assets/Content/quit_icon.svg"></Image>
+        </Button>
+
+        <controls:BackButtonCompact   VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="150" Grid.Row="4"></controls:BackButtonCompact>
 
     </Grid>
 </Page>

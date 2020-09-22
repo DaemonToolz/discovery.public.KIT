@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:discovery.KIT.Controls"
+    xmlns:models="using:discovery.KIT.ORACLE.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -17,31 +18,69 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.ColumnSpan="3" FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Query filters" ></TextBlock>
 
-        <controls:BackButtonCompact  Grid.Row="3"  VerticalAlignment="Stretch" Width="150" ></controls:BackButtonCompact>
-
         <!-- WHERE Conditions -->
-        <Button Grid.Row="1" x:Name="AddSearchClauseBtn" Width="250"  Background="{x:Null}">
+        <TextBlock  Grid.Row="1" Grid.ColumnSpan="3" FontSize="32" HorizontalAlignment="Center" FontWeight="Bold" Text="Filters" ></TextBlock>
+        <Button Grid.Row="2" x:Name="AddSearchClauseBtn" Width="250"  Background="{x:Null}" Click="AddSearchClauseBtn_Click">
             <Image MaxWidth="150"  Source="/Assets/Content/create_new_icon.svg"></Image>
         </Button>
-        <ListView Grid.Row="1" Grid.Column="1"></ListView>
-        <Button Grid.Row="1" Grid.Column="2" x:Name="RemSearchClauseBtn" Width="250"  Background="{x:Null}">
+        <ListView  SelectionMode="None"  ItemsSource="{x:Bind Filters, Mode=OneWay}" Grid.Row="2" Grid.Column="1" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"  Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate >
+                <DataTemplate x:DataType="models:QueryFilter">
+                    
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="75"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.ColumnSpacing>10</Grid.ColumnSpacing>
+
+                        <TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" PlaceholderText="Column name" Text="{x:Bind Column, Mode=TwoWay}"></TextBox>
+                        <ComboBox VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1"> </ComboBox>
+                        <TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="2" PlaceholderText="Column Value" Text="{x:Bind Value, Mode=TwoWay}"></TextBox>
+
+                        <Button Tag="{x:Bind GUID}"  x:Name="DeleteFilterLineBtn" Grid.Column="3" Background="{x:Null}" Click="DeleteFilterLineBtn_Click">
+                            <Image  Source="/Assets/Content/delete_me_icon.svg"></Image>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Grid.Row="2" Grid.Column="2" x:Name="RemSearchClauseBtn" Width="250"  Background="{x:Null}" Click="RemSearchClauseBtn_Click">
             <Image MaxWidth="150"  Source="/Assets/Content/delete_me_icon.svg"></Image>
         </Button>
 
         <!-- OrderBy Conditions -->
-        <Button Grid.Row="2" x:Name="AddOrderClauseBtn" Width="250"  Background="{x:Null}">
+        <TextBlock  Grid.Row="3" Grid.ColumnSpan="3" FontSize="32" HorizontalAlignment="Center" FontWeight="Bold" Text="Orders" ></TextBlock>
+        <Button Grid.Row="4" x:Name="AddOrderClauseBtn" Width="250"  Background="{x:Null}" Click="AddOrderClauseBtn_Click">
             <Image MaxWidth="150"  Source="/Assets/Content/create_new_icon.svg"></Image>
         </Button>
-        <ListView Grid.Row="2" Grid.Column="1"></ListView>
-        <Button Grid.Row="2" Grid.Column="2" x:Name="RemOrderClauseBtn" Width="250"  Background="{x:Null}">
+        <ListView Grid.Row="4" Grid.Column="1"></ListView>
+        <Button Grid.Row="4" Grid.Column="2" x:Name="RemOrderClauseBtn" Width="250"  Background="{x:Null}" Click="RemOrderClauseBtn_Click">
             <Image MaxWidth="150"  Source="/Assets/Content/delete_me_icon.svg"></Image>
+        </Button>
+
+        <!-- Actions du bas -->
+        <controls:BackButtonCompact  Grid.Row="5"  VerticalAlignment="Stretch" Width="150" ></controls:BackButtonCompact>
+
+        <Button x:Name="ValidateBtn" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" Width="150" Background="{x:Null}" Click="ValidateBtn_Click">
+            <Image  Source="/Assets/Content/validate_icon.svg"></Image>
         </Button>
     </Grid>
 </Page>

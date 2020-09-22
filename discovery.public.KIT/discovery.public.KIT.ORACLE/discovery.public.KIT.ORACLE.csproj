@@ -133,7 +133,8 @@
     <Compile Include="Extensions\DataSet.cs" />
     <Compile Include="Generics\Bindable.cs" />
     <Compile Include="Internal\OracleAuthData.cs" />
-    <Compile Include="Models\OracleFilter.cs" />
+    <Compile Include="Models\QueryFilter.cs" />
+    <Compile Include="Models\SQLComparator.cs" />
     <Compile Include="OracleConnector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\discovery.@public.KIT.ORACLE.rd.xml" />

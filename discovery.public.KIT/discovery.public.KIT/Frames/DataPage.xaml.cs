@@ -34,6 +34,10 @@ namespace discovery.KIT.Frames
 
         private EventManager _eventManager = new EventManager();
 
+        public int FilterCount => ActiveConnectionHandler.Filters?.Count ?? 0;
+        public int OrderCount => ActiveConnectionHandler.OrderBy?.Count ?? 0;
+
+
         private bool _offlineMode = true;
         public bool OfflineMode
         {
