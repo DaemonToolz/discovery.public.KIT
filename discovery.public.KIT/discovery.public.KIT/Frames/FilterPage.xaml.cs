@@ -34,23 +34,43 @@ namespace discovery.KIT.Frames
 
         public FilterPage()
         {
+            DataContext = this;
+
             this.InitializeComponent();
         }
 
-        private ObservableCollection<QueryFilter> _filters = new ObservableCollection<QueryFilter>();
-        private ObservableCollection<QueryOrderBy> _orderBys = new ObservableCollection<QueryOrderBy>();
+        private ObservableCollection<QueryFilter> _filters;
+        private ObservableCollection<QueryOrderBy> _orderBys;
+
+        public List<string> AvailableOrderBy { get; } = new List<string>() { SQLOrderingEnum.Ascendant.Sign, SQLOrderingEnum.Descendant.Sign, };
+
+
+        public List<string> AvailableFilters { get; } = new List<string>(){ SQLComparatorsEnum.Equal.Sign,
+            SQLComparatorsEnum.GreaterThan.Sign,
+            SQLComparatorsEnum.GreaterThanOrEqual.Sign,
+            SQLComparatorsEnum.LIKE.Sign,
+            SQLComparatorsEnum.LowerThan.Sign,
+            SQLComparatorsEnum.LowerThanOrEqual.Sign,
+            SQLComparatorsEnum.OracleDifferent.Sign,
+            SQLComparatorsEnum.SQLDifferent.Sign };
 
         public ObservableCollection<QueryOrderBy> OrderBys
         {
             get => _orderBys;
-            set => SetField(ref _orderBys, value);
+            private set => SetField(ref _orderBys, value);
         }
-
 
         public ObservableCollection<QueryFilter> Filters
         {
             get => _filters;
-            set => SetField(ref _filters, value);
+            private set => SetField(ref _filters, value);
+        }
+
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            Filters = new ObservableCollection<QueryFilter>(ActiveConnectionHandler.Filters);
+            OrderBys = new ObservableCollection<QueryOrderBy>(ActiveConnectionHandler.OrderBy);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -69,12 +89,13 @@ namespace discovery.KIT.Frames
 
         private void AddSearchClauseBtn_Click(object sender, RoutedEventArgs e)
         {
-            Filters.Add(new QueryFilter());
+
+            Filters.Add(new QueryFilter(){ Filter = new SQLComparator(string.Empty)});
         }
 
         private void AddOrderClauseBtn_Click(object sender, RoutedEventArgs e)
         {
-            OrderBys.Add(new QueryOrderBy());
+            OrderBys.Add(new QueryOrderBy(){Direction = new SQLComparator(string.Empty) });
         }
 
         private void RemSearchClauseBtn_Click(object sender, RoutedEventArgs e)
@@ -109,13 +130,13 @@ namespace discovery.KIT.Frames
 
             Task.Run(() =>
             {
-                ActiveConnectionHandler.Filters = filters.Select(data => $"{data.Column ?? string.Empty}{data.Filter?.Sign ?? string.Empty}{data.Value ?? string.Empty}").ToList<string>();
+                ActiveConnectionHandler.Filters = filters.ToList();
             });
 
             var orders = OrderBys;
             Task.Run(() =>
             {
-                ActiveConnectionHandler.OrderBy = orders.Select(data => $"{data.Column ?? string.Empty}{data.Direction?.Sign ?? string.Empty}").ToList<string>();
+                ActiveConnectionHandler.OrderBy = orders.ToList();
             });
 
             _eventManager.OnNavigationEvent(new NavigationEventArgs<object>()
@@ -123,6 +144,23 @@ namespace discovery.KIT.Frames
                 NavigationEvent = NavigationEvent.LogIn,
                 Data = null
             });
+        }
+
+        private void DeleterOrderBy_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is Button deleteBtn) || string.IsNullOrEmpty(deleteBtn?.Tag?.ToString()))
+            {
+                return;
+            }
+
+            try
+            {
+                OrderBys.Remove(OrderBys.Single(data => data.GUID.Equals(deleteBtn.Tag.ToString())));
+            }
+            catch
+            {
+
+            }
         }
     }
 }

@@ -58,7 +58,6 @@ namespace discovery.KIT.Frames
         public DataPage()
         {
             this.InitializeComponent();
-            NavigationCacheMode = NavigationCacheMode.Required;
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -66,6 +65,7 @@ namespace discovery.KIT.Frames
             base.OnNavigatedTo(e);
             if (!(e.Parameter is DataSourceConnection data))
             {
+                OfflineMode = _cached?.OfflineMode ?? false;
                 return;
             }
 
@@ -122,6 +122,14 @@ namespace discovery.KIT.Frames
             _eventManager.OnNavigationEvent(new NavigationEventArgs<object>()
             {
                 NavigationEvent = NavigationEvent.QueryFilters
+            });
+        }
+
+        private void ImportExportDataBtn_Click(object sender, RoutedEventArgs e)
+        {
+            _eventManager.OnNavigationEvent(new NavigationEventArgs<object>()
+            {
+                NavigationEvent = NavigationEvent.ImportExport
             });
         }
     }

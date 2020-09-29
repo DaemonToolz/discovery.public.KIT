@@ -16,6 +16,7 @@ namespace discovery.KIT.Models
         Welcome,
         LogIn,
         QueryFilters,
+        ImportExport,
         Back
     }
 

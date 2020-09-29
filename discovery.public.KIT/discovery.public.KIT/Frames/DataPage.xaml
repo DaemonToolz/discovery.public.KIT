@@ -43,7 +43,7 @@
             <Button x:Name="QueryFilterBtn"  Width="150"  Background="{x:Null}" Click="QueryFilterBtn_Click" >
                 <Image  Source="/Assets/Content/filter_icon.svg"></Image>
             </Button>
-            <Button Width="150" Background="{x:Null}" >
+            <Button x:Name="ImportExportDataBtn" Width="150" Background="{x:Null}" Click="ImportExportDataBtn_Click" >
                 <Image  Source="/Assets/Content/import_export_icon.svg"></Image>
             </Button>
          

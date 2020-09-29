@@ -77,6 +77,14 @@ namespace discovery.KIT.ORACLE.Models
         {
             Sign = sign;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SQLComparator()
+        {
+
+        }
     }
 
 

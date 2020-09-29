@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using discovery.KIT.Models.DataSources;
 using discovery.KIT.ORACLE;
 using discovery.KIT.ORACLE.Internal;
+using discovery.KIT.ORACLE.Models;
 
 namespace discovery.KIT.Internal
 {
@@ -15,7 +16,7 @@ namespace discovery.KIT.Internal
 
         public static bool Connect(ref DataSourceConnection dsc)
         {
-            OC?.Disconnect();
+            Disconnect();
             if (dsc.ID == default || string.IsNullOrEmpty(dsc.Alias) || string.IsNullOrEmpty(dsc.Server) || dsc.Port <= 0 || dsc.AuthenticationData?.Password == null || string.IsNullOrEmpty(dsc.AuthenticationData?.Username) )
             {
                 return false;
@@ -43,9 +44,14 @@ namespace discovery.KIT.Internal
             OC = null;
         }
 
-        public static Task<List<dynamic>> ExecuteRequest(string table, string condition = "", string orderBy = "", int limit = 500)
+        public static Task<List<dynamic>> ExecuteRequest(string table, int limit = 500)
         {
-            return Task.Run(() => OC?.ExecuteRequest(table, condition, orderBy, limit));
+            return Task.Run(() => 
+                OC?.ExecuteRequest(
+                    table, 
+                    string.Join("AND ", Filters.Select(data => $"{data.Column ?? string.Empty}{data.Filter?.Sign ?? string.Empty}{data.Value ?? string.Empty}").ToList<string>()), 
+                    string.Join(", ", OrderBy.Select(data => $"{data.Column ?? string.Empty}{data.Direction?.Sign ?? string.Empty}").ToList<string>()), 
+                    limit));
         }
 
         public static Task<List<string>> DiscoverServer()
@@ -55,10 +61,10 @@ namespace discovery.KIT.Internal
 
         public static List<string> Headers => OC?.Headers;
         public static List<string> Tables  => OC?.Tables;
-        public static List<dynamic> ExistingData => OC?.DataSource;
+        public static List<dynamic> ExistingData => OC?.DataSource ?? new List<dynamic>();
 
-        public static List<string> Filters;
-        public static List<string> OrderBy;
+        public static List<QueryFilter> Filters = new List<QueryFilter>();
+        public static List<QueryOrderBy> OrderBy = new List<QueryOrderBy>();
 
     }
 }

@@ -40,6 +40,14 @@ namespace discovery.KIT
                     MainFrame.GoBack();
                     if (toClear)
                     {
+                        var cacheSize = ((Frame)Parent).CacheSize;
+                        var mfSize = MainFrame.CacheSize;
+
+                        ((Frame)Parent).CacheSize = 0;
+                        ((Frame)Parent).CacheSize = cacheSize;
+                        MainFrame.CacheSize = 0;
+                        MainFrame.CacheSize = mfSize;
+
                         MainFrame.ForwardStack.Clear();
                         MainFrame.BackStack.Clear();
                     }
@@ -56,6 +64,9 @@ namespace discovery.KIT
 
                 case NavigationEvent.QueryFilters:
                     MainFrame.Navigate(typeof(FilterPage), args.Data);
+                    break;
+                case NavigationEvent.ImportExport:
+                    MainFrame.Navigate(typeof(ImportExport), args.Data);
                     break;
                 case NavigationEvent.Welcome:
                     MainFrame.Navigate(typeof(WelcomePage));

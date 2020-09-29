@@ -7,6 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="using:discovery.KIT.Controls"
     xmlns:models="using:discovery.KIT.ORACLE.Models"
+    xmlns:interop="using:Windows.UI.Xaml.Interop"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -50,9 +51,19 @@
                         </Grid.ColumnDefinitions>
 
                         <Grid.ColumnSpacing>10</Grid.ColumnSpacing>
-
+                        <!-- FUTURE : Replace with AutoSuggetBox with given columns -->
                         <TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" PlaceholderText="Column name" Text="{x:Bind Column, Mode=TwoWay}"></TextBox>
-                        <ComboBox VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1"> </ComboBox>
+                        <!-- FEAT : Find an automated replacement -->
+                        <ComboBox VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" SelectedValue="{x:Bind Filter.Sign, Mode=TwoWay}">
+                            <ComboBoxItem>=</ComboBoxItem>
+                            <ComboBoxItem>!=</ComboBoxItem>
+                            <ComboBoxItem>&lt;&gt;</ComboBoxItem>
+                            <ComboBoxItem>&lt;</ComboBoxItem>
+                            <ComboBoxItem>&lt;=</ComboBoxItem>
+                            <ComboBoxItem>&gt;</ComboBoxItem>
+                            <ComboBoxItem>&gt;=</ComboBoxItem>
+                            <ComboBoxItem>LIKE</ComboBoxItem>
+                        </ComboBox>
                         <TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="2" PlaceholderText="Column Value" Text="{x:Bind Value, Mode=TwoWay}"></TextBox>
 
                         <Button Tag="{x:Bind GUID}"  x:Name="DeleteFilterLineBtn" Grid.Column="3" Background="{x:Null}" Click="DeleteFilterLineBtn_Click">
@@ -71,15 +82,45 @@
         <Button Grid.Row="4" x:Name="AddOrderClauseBtn" Width="250"  Background="{x:Null}" Click="AddOrderClauseBtn_Click">
             <Image MaxWidth="150"  Source="/Assets/Content/create_new_icon.svg"></Image>
         </Button>
-        <ListView Grid.Row="4" Grid.Column="1"></ListView>
+
+        <ListView  SelectionMode="None"  ItemsSource="{x:Bind OrderBys, Mode=OneWay}" Grid.Row="4" Grid.Column="1">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"  Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate >
+                <DataTemplate x:DataType="models:QueryOrderBy">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="75"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.ColumnSpacing>10</Grid.ColumnSpacing>
+                        <!-- FUTURE : Replace with AutoSuggetBox with given columns -->
+                        <TextBox VerticalAlignment="Center" HorizontalAlignment="Stretch" PlaceholderText="Column name" Text="{x:Bind Column, Mode=TwoWay}"></TextBox>
+                        <ComboBox VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Column="1" SelectedValue="{x:Bind Direction.Sign, Mode=TwoWay}">
+                            <ComboBoxItem>ASC</ComboBoxItem>
+                            <ComboBoxItem>DESC</ComboBoxItem>
+                        </ComboBox>
+                        <Button Tag="{x:Bind GUID}"  x:Name="DeleterOrderBy" Grid.Column="2" Background="{x:Null}" Click="DeleterOrderBy_Click">
+                            <Image  Source="/Assets/Content/delete_me_icon.svg"></Image>
+                        </Button>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button Grid.Row="4" Grid.Column="2" x:Name="RemOrderClauseBtn" Width="250"  Background="{x:Null}" Click="RemOrderClauseBtn_Click">
             <Image MaxWidth="150"  Source="/Assets/Content/delete_me_icon.svg"></Image>
         </Button>
 
         <!-- Actions du bas -->
-        <controls:BackButtonCompact  Grid.Row="5"  VerticalAlignment="Stretch" Width="150" ></controls:BackButtonCompact>
+        <controls:BackButtonCompact  Grid.Row="5"  Grid.Column="2" VerticalAlignment="Stretch" Width="150" ></controls:BackButtonCompact>
 
-        <Button x:Name="ValidateBtn" Grid.Row="5" Grid.Column="2" HorizontalAlignment="Stretch" Width="150" Background="{x:Null}" Click="ValidateBtn_Click">
+        <Button x:Name="ValidateBtn" Grid.Row="5"  HorizontalAlignment="Stretch" Width="150" Background="{x:Null}" Click="ValidateBtn_Click">
             <Image  Source="/Assets/Content/validate_icon.svg"></Image>
         </Button>
     </Grid>
