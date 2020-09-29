@@ -8,14 +8,14 @@
 
   <Identity
     Name="66d78451-72d0-47c3-b5c4-bca52a547f69"
-    Publisher="CN=t0192534"
+    Publisher="CN=Axel MACIEJEWSKI"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="66d78451-72d0-47c3-b5c4-bca52a547f69" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>discovery.public.KIT</DisplayName>
-    <PublisherDisplayName>t0192534</PublisherDisplayName>
+    <PublisherDisplayName>Axel MACIEJEWSKI</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
