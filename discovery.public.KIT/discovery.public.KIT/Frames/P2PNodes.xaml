@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="discovery.KIT.Frames.P2PNodes"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:discovery.KIT.Frames"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:discovery.KIT.p2p.Models"
+    xmlns:controls="using:discovery.KIT.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ListView  SelectionMode="None"  ItemsSource="{x:Bind DetectedAppareils, Mode=OneWay}" Grid.ColumnSpan="2" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"  Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate >
+                <DataTemplate x:DataType="models:DiscoveryFrame">
+
+                    <StackPanel Orientation="Horizontal" Spacing="15">
+                        <SymbolIcon Symbol="OneBar"></SymbolIcon>
+                        <StackPanel Spacing="5">
+                            <TextBlock FontWeight="Bold" Text="Host"></TextBlock>
+                            <TextBlock Text="{x:Bind Host, Mode=OneWay}"></TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Spacing="5">
+                            <TextBlock FontWeight="Bold" Text="Address"></TextBlock>
+                            <TextBlock Text="{x:Bind Address, Mode=OneWay}"></TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Spacing="5">
+                            <TextBlock FontWeight="Bold" Text="Port"></TextBlock>
+                            <TextBlock Text="{x:Bind RouterPort, Mode=OneWay}"></TextBlock>
+                        </StackPanel>
+
+                        <Button  Tag="{x:Bind Address, Mode=OneWay}"  Background="{x:Null}" VerticalAlignment="Stretch" Click="PeerDeviceBtn_Click">
+                            <StackPanel Spacing="5" Orientation="Horizontal" >
+                                <FontIcon Glyph="&#xE705;"></FontIcon>
+                                <TextBlock Text="Peer"></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <!-- Actions du bas -->
+        <controls:BackButtonCompact  Grid.Row="1"  Grid.Column="0" VerticalAlignment="Stretch" Width="150" ></controls:BackButtonCompact>
+
+    </Grid>
+</Page>

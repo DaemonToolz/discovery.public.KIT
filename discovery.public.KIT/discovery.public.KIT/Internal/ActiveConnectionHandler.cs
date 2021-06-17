@@ -7,6 +7,7 @@ using discovery.KIT.Models.DataSources;
 using discovery.KIT.ORACLE;
 using discovery.KIT.ORACLE.Internal;
 using discovery.KIT.ORACLE.Models;
+using DocumentFormat.OpenXml.Drawing.Charts;
 
 namespace discovery.KIT.Internal
 {
@@ -59,12 +60,12 @@ namespace discovery.KIT.Internal
             return Task.Run(() => OC?.DiscoverServer());
         }
 
-        public static List<string> Headers => OC?.Headers;
-        public static List<string> Tables  => OC?.Tables;
+        public static List<string> Headers => OC?.Headers ?? new List<string>();
+        public static List<string> Tables  => OC?.Tables ?? new List<string>();
         public static List<dynamic> ExistingData => OC?.DataSource ?? new List<dynamic>();
 
         public static List<QueryFilter> Filters = new List<QueryFilter>();
         public static List<QueryOrderBy> OrderBy = new List<QueryOrderBy>();
-
+        public static DataTable ContentTable = new DataTable();
     }
 }

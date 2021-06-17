@@ -12,5 +12,14 @@ namespace discovery.KIT.Events
         }
 
 
+        public static event EventHandler<DataUpdatedEventArgs<object>> DataUpdatedHandler;
+
+        public virtual void OnDataUpdated(DataUpdatedEventArgs<object> e)
+        {
+            DataUpdatedHandler?.Invoke(this, e);
+        }
+
     }
+
+
 }

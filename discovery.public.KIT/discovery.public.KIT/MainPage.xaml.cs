@@ -68,11 +68,18 @@ namespace discovery.KIT
                 case NavigationEvent.ImportExport:
                     MainFrame.Navigate(typeof(ImportExport), args.Data);
                     break;
+                case NavigationEvent.P2P:
+                    MainFrame.Navigate(typeof(P2PNodes), args.Data);
+                    break;
                 case NavigationEvent.Welcome:
                     MainFrame.Navigate(typeof(WelcomePage));
                     MainFrame.ForwardStack.Clear();
                     MainFrame.BackStack.Clear();
                     break;
+                case null:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

@@ -17,7 +17,13 @@ namespace discovery.KIT.Models
         LogIn,
         QueryFilters,
         ImportExport,
+        P2P,
         Back
+    }
+
+    public class DataUpdatedEventArgs<T> : EventArgs
+    {
+        public T Data;
     }
 
 

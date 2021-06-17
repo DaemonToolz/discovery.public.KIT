@@ -118,6 +118,12 @@ namespace discovery.KIT.Frames
         {
             if (sender == null) return;
 
+            if (DatabaseInformationFlipView.SelectedIndex != DatabaseInformationFlipView.Items.Count -1)
+            {
+                DatabaseInformationFlipView.SelectedIndex += 1;
+                return;
+            }
+
             try
             {
                 // On garde le mot de passe en SecureString

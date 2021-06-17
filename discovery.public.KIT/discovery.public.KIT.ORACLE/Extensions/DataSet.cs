@@ -13,15 +13,8 @@ public static class Extensions
     public static List<T> ToList<T>(this DataTable table) where T : new()
     {
         IList<PropertyInfo> properties = typeof(T).GetProperties().ToList();
-        var result = new List<T>();
 
-        foreach (var row in table.Rows)
-        {
-            var item = CreateItemFromRow<T>((DataRow)row, properties);
-            result.Add(item);
-        }
-
-        return result;
+        return (from object row in table.Rows select CreateItemFromRow<T>((DataRow) row, properties)).ToList();
     }
 
     private static T CreateItemFromRow<T>(DataRow row, IList<PropertyInfo> properties) where T : new()

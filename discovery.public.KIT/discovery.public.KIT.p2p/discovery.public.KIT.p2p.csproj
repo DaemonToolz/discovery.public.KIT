@@ -120,19 +120,31 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="P2PReceiver.cs" />
-    <Compile Include="P2PSender.cs" />
+    <Compile Include="Events\EventManager.cs" />
+    <Compile Include="Events\EventModels.cs" />
+    <Compile Include="Models\CommunicationMetadata.cs" />
+    <Compile Include="Models\DiscoveryFrame.cs" />
+    <Compile Include="Models\IdentificationFrame.cs" />
+    <Compile Include="Models\MessageModel.cs" />
+    <Compile Include="Models\PingFrame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZeroMQBeacon.cs" />
+    <Compile Include="ZeroMQDealer.cs" />
+    <Compile Include="ZeroMQRouter.cs" />
     <EmbeddedResource Include="Properties\discovery.@public.KIT.p2p.rd.xml" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.10</Version>
+      <Version>6.2.12</Version>
     </PackageReference>
     <PackageReference Include="NetMQ">
       <Version>4.0.1.6</Version>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

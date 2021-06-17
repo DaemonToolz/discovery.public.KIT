@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using discovery.KIT.Internal;
 
 namespace discovery.KIT
 {
@@ -30,6 +31,7 @@ namespace discovery.KIT
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+           
         }
 
         /// <summary>
@@ -40,7 +42,7 @@ namespace discovery.KIT
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             Frame rootFrame = Window.Current.Content as Frame;
-
+            P2PManager.Init();
             // Ne répétez pas l'initialisation de l'application lorsque la fenêtre comporte déjà du contenu,
             // assurez-vous juste que la fenêtre est active
             if (rootFrame == null)

@@ -36,32 +36,43 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer Grid.ColumnSpan="2" HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel Orientation="Horizontal" Spacing="25" >
-                  <StackPanel Spacing="5" Width="750" >
-                      <!-- Localization regarding user language TBD-->
-                      <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Server identification"></TextBlock>
-                    <TextBox FontSize="32"  Text="{x:Bind Alias, Mode=TwoWay}" PlaceholderText="Alias / Registration name"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
-                    <TextBox FontSize="32"  Text="{x:Bind Server, Mode=TwoWay}" PlaceholderText="Database server" extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
-                    <TextBox FontSize="32"  Text="{x:Bind Port, Mode=TwoWay}" PlaceholderText="Port" extensions:TextBoxRegex.Regex="[0-9]+"></TextBox>
+        <FlipView x:Name="DatabaseInformationFlipView" Grid.ColumnSpan="2" Grid.RowSpan="2"  UseTouchAnimationsForAllNavigation="True" Background="{x:Null}">
+            <FlipViewItem HorizontalAlignment="Stretch" >
+                <StackPanel Spacing="5" Margin="10">
+                    <StackPanel Spacing="5" >
+                            <!-- Localization regarding user language TBD-->
+                            <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Server identification"></TextBlock>
+                            <TextBox FontSize="32"  Text="{x:Bind Alias, Mode=TwoWay}" PlaceholderText="Alias / Registration name"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
+                            <TextBox FontSize="32"  Text="{x:Bind Server, Mode=TwoWay}" PlaceholderText="Database server" extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
+                            <TextBox FontSize="32"  Text="{x:Bind Port, Mode=TwoWay}" PlaceholderText="Port" extensions:TextBoxRegex.Regex="[0-9]+"></TextBox>
                     </StackPanel>
+                </StackPanel>
+            </FlipViewItem>
+            <FlipViewItem HorizontalAlignment="Stretch" >
+                <StackPanel Spacing="5" Margin="10">
 
-                <StackPanel Spacing="5" Width="750" >
-                    <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Connection and Credentials"></TextBlock>
-                    <TextBox FontSize="32"  PlaceholderText="Username" Text="{x:Bind User, Mode=TwoWay}"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$" ></TextBox>
-                    <PasswordBox FontSize="32"  PlaceholderText="Password" x:Name="UserPasswordBox" ></PasswordBox>
+                    <StackPanel Spacing="5"  >
+                            <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Connection and Credentials"></TextBlock>
+                            <TextBox FontSize="32"  PlaceholderText="Username" Text="{x:Bind User, Mode=TwoWay}"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$" ></TextBox>
+                            <PasswordBox FontSize="32"  PlaceholderText="Password" x:Name="UserPasswordBox" ></PasswordBox>
+                        </StackPanel>
+                    </StackPanel>
+            </FlipViewItem>
+            <FlipViewItem HorizontalAlignment="Stretch" >
+                <StackPanel Spacing="5" Margin="10">
+               
+                    <StackPanel Spacing="5" >
+                            <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="ORACLE"></TextBlock>
+                            <TextBox FontSize="32"  PlaceholderText="Oracle Database SID" Text="{x:Bind SID, Mode=TwoWay}"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
+                        </StackPanel>
                 </StackPanel>
-                 
-                <StackPanel Spacing="5" Width="750" >
-                    <TextBlock FontSize="48" HorizontalAlignment="Center" FontWeight="Bold" Text="Spécifités ORACLE"></TextBlock>
-                    <TextBox FontSize="32"  PlaceholderText="Oracle Database SID" Text="{x:Bind SID, Mode=TwoWay}"  extensions:TextBoxRegex.Regex="^\s*\+?\s*([0-9][\s-]*){9,}$"></TextBox>
-                </StackPanel>
-            </StackPanel>
-        </ScrollViewer>
+            </FlipViewItem>
+        </FlipView>
+   
        
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
         </Grid>
-            <Button x:Name="ValidateBtn" Grid.Row="2" Grid.Column="1"  Width="150" HorizontalAlignment="Right" Background="{x:Null}" Click="ValidateBtn_Click">
+        <Button x:Name="ValidateBtn" Grid.Row="2" Grid.Column="1"  Width="150" HorizontalAlignment="Right" Background="{x:Null}" Click="ValidateBtn_Click">
             <Image  Source="/Assets/Content/validate_icon.svg"></Image>
         </Button>
         <controls:BackButtonCompact   VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="150" Grid.Row="2"></controls:BackButtonCompact>

@@ -27,10 +27,13 @@
         <Image Width="75" Grid.Row="1" Source="/Assets/Content/export_icon.svg"></Image>
         <ScrollViewer Grid.Row="1" Grid.Column="1" HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto">
             <StackPanel Orientation="Horizontal">
-                <Button Grid.Row="2" x:Name="ExportJsonBtn" Width="250"  Background="{x:Null}" Click="ExportJsonBtn_ClickAsync" >
+                <Button Grid.Row="2" x:Name="ExportJsonBtn" Width="150"  Background="{x:Null}" Click="ExportJsonBtn_ClickAsync" >
                     <Image  Source="/Assets/Content/export_json_icon.svg"></Image>
                 </Button>
-                <Button Grid.Row="2" x:Name="ExportExcelBtn" Width="250"  Background="{x:Null}" >
+                <Button Grid.Row="2" x:Name="ExportExcelBtn" Width="150"  Background="{x:Null}" Click="ExportExcelBtn_Click" >
+                    <Image  Source="/Assets/Content/export_excel_icon.svg"></Image>
+                </Button>
+                <Button Grid.Row="2" x:Name="ExportP2P" Width="150"  Background="{x:Null}" Click="ExportP2P_Click"  >
                     <Image  Source="/Assets/Content/export_excel_icon.svg"></Image>
                 </Button>
             </StackPanel>
@@ -38,9 +41,14 @@
 
         <Image Width="75" Grid.Row="2" Source="/Assets/Content/import_icon.svg"></Image>
         <ScrollViewer Grid.Row="2" Grid.Column="1"  HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto">
-            <Button Grid.Row="2" x:Name="ImportJsonBtn" Width="250"  Background="{x:Null}" >
-                <Image  Source="/Assets/Content/import_json_icon.svg"></Image>
-            </Button>
+            <StackPanel Orientation="Horizontal">
+                <Button  x:Name="ImportJsonBtn" Width="150"  Background="{x:Null}" >
+                    <Image  Source="/Assets/Content/import_json_icon.svg"></Image>
+                </Button>
+                <Button  x:Name="ImportP2P" Width="150"  Background="{x:Null}" >
+                    <Image  Source="/Assets/Content/import_json_icon.svg"></Image>
+                </Button>
+            </StackPanel>
         </ScrollViewer>
 
         <controls:BackButtonCompact  Grid.Row="3"  VerticalAlignment="Stretch" Width="150" ></controls:BackButtonCompact>
