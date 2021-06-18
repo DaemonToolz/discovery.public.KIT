@@ -56,9 +56,40 @@ namespace discovery.KIT.Internal
 
         public static void PeerToSystem(DiscoveryFrame data)
         {
-            _connection = new ZeroMQDealer(10520, data.Host, data.RouterPort, data);
-            Thread.Sleep(50);
-            _connection?.SendEmptyFrames();
+            try
+            {
+                DisconnectFromPeer();
+                _connection = new ZeroMQDealer(10520, data.Host, data.RouterPort, data);
+                Thread.Sleep(50);
+                _connection?.SendEmptyFrames();
+                _beacon.PrivatizeMe();
+                _beacon.Stop();
+            }
+            catch
+            {
+                DisconnectFromPeer();
+                _beacon.Subscribe();
+                _beacon.PublicizeMe();
+            }
+        }
+
+        public static void DisconnectFromPeer()
+        {
+            try
+            {
+                _connection?.Stop();
+                _connection?.Dispose();
+
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                _beacon.Subscribe();
+                _beacon.PublicizeMe();
+            }
         }
 
         public static void StartAsNode()

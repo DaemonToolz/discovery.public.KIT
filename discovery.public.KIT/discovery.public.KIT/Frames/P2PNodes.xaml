@@ -7,9 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="using:discovery.KIT.p2p.Models"
     xmlns:controls="using:discovery.KIT.Controls"
+    xmlns:converters="using:Microsoft.Toolkit.Uwp.UI.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+    </Page.Resources>
     <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -19,7 +23,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListView  SelectionMode="None"  ItemsSource="{x:Bind DetectedAppareils, Mode=OneWay}" Grid.ColumnSpan="2" >
+        <ListView  SelectionMode="None"  ItemsSource="{x:Bind DetectedAppareils, Mode=OneWay}" Visibility="{x:Bind IsFree, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Grid.ColumnSpan="2" >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment"  Value="Stretch"></Setter>
@@ -45,7 +49,7 @@
                             <TextBlock Text="{x:Bind RouterPort, Mode=OneWay}"></TextBlock>
                         </StackPanel>
 
-                        <Button  Tag="{x:Bind Address, Mode=OneWay}"  Background="{x:Null}" VerticalAlignment="Stretch" Click="PeerDeviceBtn_Click">
+                        <Button  Tag="{x:Bind Address, Mode=OneWay}"  Background="{x:Null}" VerticalAlignment="Stretch" Click="PeerDeviceBtn_Click" >
                             <StackPanel Spacing="5" Orientation="Horizontal" >
                                 <FontIcon Glyph="&#xE705;"></FontIcon>
                                 <TextBlock Text="Peer"></TextBlock>
@@ -56,7 +60,43 @@
             </ListView.ItemTemplate>
         </ListView>
 
-        <!-- Actions du bas -->
+        <Grid Visibility="{x:Bind IsFree, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}" Grid.ColumnSpan="2"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.ColumnSpacing>5</Grid.ColumnSpacing>
+
+            <Button Visibility="{x:Bind IsSending, Converter={StaticResource InvertedBoolToVisibilityConverter}, Mode=OneWay}" x:Name="SendDataBtn" HorizontalAlignment="Stretch"  Background="{x:Null}" Click="SendDataBtn_Click"  >
+                <StackPanel Spacing="5" Orientation="Horizontal" >
+                    <FontIcon Glyph="&#xE724;"></FontIcon>
+                    <TextBlock Text="Share data"></TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Visibility="{x:Bind IsSending, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" x:Name="CancelBtn" HorizontalAlignment="Stretch"  Background="{x:Null}" Click="CancelBtn_Click"   >
+                <StackPanel Spacing="5" Orientation="Horizontal" >
+                    <FontIcon Glyph="&#xF78A;"></FontIcon>
+                    <TextBlock Text="Cancel"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Grid.Column="1" HorizontalAlignment="Stretch" x:Name="DFPBtn"  Background="{x:Null}"  Click="DFPBtn_Click" >
+                <StackPanel Spacing="5" Orientation="Horizontal" >
+                    <FontIcon Glyph="&#xE8CD;"></FontIcon>
+                    <TextBlock Text="Disconnect"></TextBlock>
+                </StackPanel>
+            </Button>
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+                <ProgressBar Maximum="{x:Bind BarMaxItems, Mode=OneWay}" Value="{x:Bind CurrentItem, Mode=OneWay}"></ProgressBar>
+                <TextBlock FontSize="24" TextAlignment="Center" HorizontalAlignment="Stretch" FontWeight="Bold" Text="{x:Bind TransfertTitle, Mode=OneWay}"></TextBlock>
+                <TextBlock  HorizontalAlignment="Stretch" TextAlignment="Center" Text="{x:Bind TransfertContent, Mode=OneWay}"></TextBlock>
+            </StackPanel>
+        </Grid>
+            <!-- Actions du bas -->
         <controls:BackButtonCompact  Grid.Row="1"  Grid.Column="0" VerticalAlignment="Stretch" Width="150" ></controls:BackButtonCompact>
 
     </Grid>

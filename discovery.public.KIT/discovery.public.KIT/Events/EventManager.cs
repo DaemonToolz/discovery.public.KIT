@@ -19,6 +19,14 @@ namespace discovery.KIT.Events
             DataUpdatedHandler?.Invoke(this, e);
         }
 
+
+        public static event EventHandler<DataSharingEventArgs<object>> DataSharingHandler;
+
+        public virtual void OnDataShared(DataSharingEventArgs<object> e)
+        {
+            DataSharingHandler?.Invoke(this, e);
+        }
+        
     }
 
 

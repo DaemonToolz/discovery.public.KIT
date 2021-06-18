@@ -34,7 +34,7 @@
                     <Image  Source="/Assets/Content/export_excel_icon.svg"></Image>
                 </Button>
                 <Button Grid.Row="2" x:Name="ExportP2P" Width="150"  Background="{x:Null}" Click="ExportP2P_Click"  >
-                    <Image  Source="/Assets/Content/export_excel_icon.svg"></Image>
+                    <Image  Source="/Assets/Content/export_app.svg"></Image>
                 </Button>
             </StackPanel>
         </ScrollViewer>
@@ -46,7 +46,7 @@
                     <Image  Source="/Assets/Content/import_json_icon.svg"></Image>
                 </Button>
                 <Button  x:Name="ImportP2P" Width="150"  Background="{x:Null}" >
-                    <Image  Source="/Assets/Content/import_json_icon.svg"></Image>
+                    <Image  Source="/Assets/Content/import_app.svg"></Image>
                 </Button>
             </StackPanel>
         </ScrollViewer>

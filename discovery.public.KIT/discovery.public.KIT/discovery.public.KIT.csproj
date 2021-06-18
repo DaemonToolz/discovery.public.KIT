@@ -181,12 +181,14 @@
     <Content Include="Assets\Content\create_new_icon.svg" />
     <Content Include="Assets\Content\database_config_icon.svg" />
     <Content Include="Assets\Content\delete_me_icon.svg" />
+    <Content Include="Assets\Content\export_app.svg" />
     <Content Include="Assets\Content\export_excel_icon.svg" />
     <Content Include="Assets\Content\export_icon.svg" />
     <Content Include="Assets\Content\export_json_icon.svg" />
     <Content Include="Assets\Content\filter_icon.svg" />
     <Content Include="Assets\Content\help_icon.svg" />
     <Content Include="Assets\Content\home_logo.svg" />
+    <Content Include="Assets\Content\import_app.svg" />
     <Content Include="Assets\Content\import_export_icon.svg" />
     <Content Include="Assets\Content\import_icon.svg" />
     <Content Include="Assets\Content\import_json_icon.svg" />

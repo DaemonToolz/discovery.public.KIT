@@ -26,5 +26,17 @@ namespace discovery.KIT.Models
         public T Data;
     }
 
+    public enum Step
+    {
+        HeaderSharing,
+        ContentSharing,
+        Cancel,
+    }
+
+    public class DataSharingEventArgs<T> : EventArgs
+    {
+        public T Data;
+        public Step Event;
+    }
 
 }
